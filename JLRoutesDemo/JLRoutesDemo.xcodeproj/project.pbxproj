@@ -1,0 +1,353 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DECC4576205936CD009F884C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC4575205936CD009F884C /* AppDelegate.m */; };
+		DECC4579205936CD009F884C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC4578205936CD009F884C /* ViewController.m */; };
+		DECC457C205936CD009F884C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DECC457A205936CD009F884C /* Main.storyboard */; };
+		DECC457E205936CD009F884C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DECC457D205936CD009F884C /* Assets.xcassets */; };
+		DECC4581205936CD009F884C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DECC457F205936CD009F884C /* LaunchScreen.storyboard */; };
+		DECC4584205936CD009F884C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC4583205936CD009F884C /* main.m */; };
+		DECC458C205936F2009F884C /* JLRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC458B205936F2009F884C /* JLRoutes.m */; };
+		DECC458F20593750009F884C /* RemoteNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC458E20593750009F884C /* RemoteNotificationService.m */; };
+		DECC459220593D5D009F884C /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC459120593D5D009F884C /* ShareService.m */; };
+		DECC459520593D8C009F884C /* ServiceMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC459420593D8C009F884C /* ServiceMediator.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DECC4571205936CD009F884C /* JLRoutesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JLRoutesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECC4574205936CD009F884C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DECC4575205936CD009F884C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DECC4577205936CD009F884C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DECC4578205936CD009F884C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DECC457B205936CD009F884C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DECC457D205936CD009F884C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DECC4580205936CD009F884C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DECC4582205936CD009F884C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DECC4583205936CD009F884C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DECC458A205936F2009F884C /* JLRoutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLRoutes.h; sourceTree = "<group>"; };
+		DECC458B205936F2009F884C /* JLRoutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLRoutes.m; sourceTree = "<group>"; };
+		DECC458D20593750009F884C /* RemoteNotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoteNotificationService.h; sourceTree = "<group>"; };
+		DECC458E20593750009F884C /* RemoteNotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoteNotificationService.m; sourceTree = "<group>"; };
+		DECC459020593D5D009F884C /* ShareService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
+		DECC459120593D5D009F884C /* ShareService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
+		DECC459320593D8C009F884C /* ServiceMediator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceMediator.h; sourceTree = "<group>"; };
+		DECC459420593D8C009F884C /* ServiceMediator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceMediator.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DECC456E205936CD009F884C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DECC4568205936CD009F884C = {
+			isa = PBXGroup;
+			children = (
+				DECC4573205936CD009F884C /* JLRoutesDemo */,
+				DECC4572205936CD009F884C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DECC4572205936CD009F884C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DECC4571205936CD009F884C /* JLRoutesDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DECC4573205936CD009F884C /* JLRoutesDemo */ = {
+			isa = PBXGroup;
+			children = (
+				DECC459020593D5D009F884C /* ShareService.h */,
+				DECC459120593D5D009F884C /* ShareService.m */,
+				DECC459320593D8C009F884C /* ServiceMediator.h */,
+				DECC459420593D8C009F884C /* ServiceMediator.m */,
+				DECC458D20593750009F884C /* RemoteNotificationService.h */,
+				DECC458E20593750009F884C /* RemoteNotificationService.m */,
+				DECC458A205936F2009F884C /* JLRoutes.h */,
+				DECC458B205936F2009F884C /* JLRoutes.m */,
+				DECC4574205936CD009F884C /* AppDelegate.h */,
+				DECC4575205936CD009F884C /* AppDelegate.m */,
+				DECC4577205936CD009F884C /* ViewController.h */,
+				DECC4578205936CD009F884C /* ViewController.m */,
+				DECC457A205936CD009F884C /* Main.storyboard */,
+				DECC457D205936CD009F884C /* Assets.xcassets */,
+				DECC457F205936CD009F884C /* LaunchScreen.storyboard */,
+				DECC4582205936CD009F884C /* Info.plist */,
+				DECC4583205936CD009F884C /* main.m */,
+			);
+			path = JLRoutesDemo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DECC4570205936CD009F884C /* JLRoutesDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DECC4587205936CD009F884C /* Build configuration list for PBXNativeTarget "JLRoutesDemo" */;
+			buildPhases = (
+				DECC456D205936CD009F884C /* Sources */,
+				DECC456E205936CD009F884C /* Frameworks */,
+				DECC456F205936CD009F884C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JLRoutesDemo;
+			productName = JLRoutesDemo;
+			productReference = DECC4571205936CD009F884C /* JLRoutesDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DECC4569205936CD009F884C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = kyson;
+				TargetAttributes = {
+					DECC4570205936CD009F884C = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DECC456C205936CD009F884C /* Build configuration list for PBXProject "JLRoutesDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DECC4568205936CD009F884C;
+			productRefGroup = DECC4572205936CD009F884C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DECC4570205936CD009F884C /* JLRoutesDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DECC456F205936CD009F884C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DECC4581205936CD009F884C /* LaunchScreen.storyboard in Resources */,
+				DECC457E205936CD009F884C /* Assets.xcassets in Resources */,
+				DECC457C205936CD009F884C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DECC456D205936CD009F884C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DECC4579205936CD009F884C /* ViewController.m in Sources */,
+				DECC458C205936F2009F884C /* JLRoutes.m in Sources */,
+				DECC4584205936CD009F884C /* main.m in Sources */,
+				DECC4576205936CD009F884C /* AppDelegate.m in Sources */,
+				DECC458F20593750009F884C /* RemoteNotificationService.m in Sources */,
+				DECC459220593D5D009F884C /* ShareService.m in Sources */,
+				DECC459520593D8C009F884C /* ServiceMediator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DECC457A205936CD009F884C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DECC457B205936CD009F884C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DECC457F205936CD009F884C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DECC4580205936CD009F884C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DECC4585205936CD009F884C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DECC4586205936CD009F884C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DECC4588205936CD009F884C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T7Z76WDTD6;
+				INFOPLIST_FILE = JLRoutesDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kyson.JLRoutesDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DECC4589205936CD009F884C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T7Z76WDTD6;
+				INFOPLIST_FILE = JLRoutesDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kyson.JLRoutesDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DECC456C205936CD009F884C /* Build configuration list for PBXProject "JLRoutesDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DECC4585205936CD009F884C /* Debug */,
+				DECC4586205936CD009F884C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DECC4587205936CD009F884C /* Build configuration list for PBXNativeTarget "JLRoutesDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DECC4588205936CD009F884C /* Debug */,
+				DECC4589205936CD009F884C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DECC4569205936CD009F884C /* Project object */;
+}

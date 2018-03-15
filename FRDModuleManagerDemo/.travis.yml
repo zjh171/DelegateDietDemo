@@ -1,0 +1,8 @@
+osx_image: xcode9.1
+language: objective-c
+script:
+    - |
+      xcodebuild test \
+      -project FRDModuleManager.xcodeproj \
+      -scheme FRDModuleManagerTests \
+      -destination 'platform=iOS Simulator,name=iPhone 7'
