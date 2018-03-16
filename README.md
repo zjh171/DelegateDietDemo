@@ -15,46 +15,16 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 2. 在 UIApplicationDelegate 各方法中留下钩子
 
 ```
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-  NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"ModulesRegister" ofType:@"plist"];
-  FRDModuleManager *manager = [FRDModuleManager sharedInstance];
-  [manager loadModulesWithPlistFile:plistPath];
-  [manager application:application didFinishLaunchingWithOptions:launchOptions];
-  return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-  [[FRDModuleManager sharedInstance] applicationWillResignActive:application];
-}
+NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"ModulesRegister" ofType:@"plist"];
+FRDModuleManager *manager = [FRDModuleManager sharedInstance];
+[manager loadModulesWithPlistFile:plistPath];
 //...这里省略其他的多个生命周期方法
 ```
 
 实现原理：
 `FRDModuleManager`的实现很简单，其内部数组持有注册的模块的引用，通过依次调用数组中的每个模块的特定方法来达到解耦的目的：
+![FRDModuleManager原理图](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_01.jpg)
 
-```
-// 添加一个模块即是往数组中添加新的元素
-- (void)addModule:(id<FRDModule>) module
-{
-  if (![self.modules containsObject:module]) {
-    [self.modules addObject:module];
-  }
-}
-```
-
-```
-// 在AppDelegate生命周期方法中依次调用每个模块的对应方法
-- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  for (id<FRDModule> module in self.modules) {
-    if ([module respondsToSelector:_cmd]) {
-      [module application:application willFinishLaunchingWithOptions:launchOptions];
-    }
-  }
-  return YES;
-}
-```
 
 优点：
 - 简单，只需要几行代码就可以解决。
@@ -65,14 +35,16 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 - 缺少模块初始化优先级，当有三个模块A,B,C时，正好C依赖于B，B依赖于A，如果在配置文件中配置A，B，C的顺序又是打乱时，初始化会出问题。
 
 ### JSDecoupledAppDelegate
-[JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具，笔者的个人项目[壁纸宝贝](https://itunes.apple.com/cn/app/id1334013423)正在使用这个库。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有如下代理:
-```
-@property (strong, nonatomic) id<JSApplicationStateDelegate> appStateDelegate;
-@property (strong, nonatomic) id<JSApplicationDefaultOrientationDelegate> appDefaultOrientationDelegate;
-@property (strong, nonatomic) id<JSApplicationBackgroundFetchDelegate> backgroundFetchDelegate;
-@property (strong, nonatomic) id<JSApplicationRemoteNotificationsDelegate> remoteNotificationsDelegate;
-//...这里省略其他的多个delegate
-```
+[JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具，笔者的个人项目[壁纸宝贝](https://itunes.apple.com/cn/app/id1334013423)正在使用这个库。。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有如下代理:
+
+| 代理名 | 协议 |描述|
+|--------|--------|
+|  appStateDelegate      |     JSApplicationStateDelegate   |App各种状态|
+|  appDefaultOrientationDelegate      |     JSApplicationDefaultOrientationDelegate   |App的横竖屏切换|
+|  remoteNotificationsDelegate      |     JSApplicationRemoteNotificationsDelegate   |App通知代理|
+
+
+
 这些代理见名知意，例如`appStateDelegate`是用于处理App的各种状态（didFinishLaunchingWithOptions、applicationDidBecomeActive等）下的逻辑；`remoteNotificationsDelegate`是用于处理App的推送的逻辑。`JSDecoupledAppDelegate`使用起来也非常简单：
 
 1. 将`main.m`中的`AppDelegate`替换成`JSDecoupledAppDelegate`：
