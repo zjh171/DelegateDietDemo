@@ -1,4 +1,3 @@
-# AppDelegate瘦身指南
 `AppDelegate`瘦身是一个大家都很熟悉的话题，各家也有各自的解决方案。但方案无外乎两种，一种是从`AppDelegate`本身入手，通过各种方式减少AppDelegate的代码行数，另一种是通过架构层面就解决了。本文将分别介绍这两种方式的代表性库，并对比其优缺点。
 
 ### FRDModuleManager
@@ -24,7 +23,7 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 实现原理：
 `FRDModuleManager`的实现很简单，其内部数组持有注册的模块的引用，通过依次调用数组中的每个模块的特定方法来达到解耦的目的：
 
-![FRDModuleManager原理图](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_01.jpg)
+![FRDModuleManager原理图](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_04.jpg)
 
 
 优点：
@@ -36,7 +35,7 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 - 缺少模块初始化优先级，当有三个模块A,B,C时，正好C依赖于B，B依赖于A，如果在配置文件中配置A，B，C的顺序又是打乱时，初始化会出问题。
 
 ### JSDecoupledAppDelegate
-[JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有很多代理，这边列举几个:
+[JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具，笔者的个人项目[壁纸宝贝](https://itunes.apple.com/cn/app/id1334013423)正在使用这个库。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有很多代理，这边列举几个:
 
 | 代理名 | 协议 |描述|
 |--------|--------|----|
@@ -68,29 +67,7 @@ return UIApplicationMain(argc, argv, nil, NSStringFromClass([JSDecoupledAppDeleg
 实现原理：
 iOS开发的小伙伴应该对Objective-C的消息转发机制有所了解，`JSDecoupledAppDelegate`就是通过转发`AppDelegate`的各个方法来实现`AppDelegate`的解耦的：
 
-```
-// JSDecoupledAppDelegate在相应方法前会调用respondsToSelector
-- (BOOL)respondsToSelector:(SEL)aSelector
-{
-    // 找到子代理，如果代理中实现了对应的方法则交给子代理处理，否则交给上层处理
-    if (protocolFound)
-    {
-        return delegateRespondsToSelector;
-    }
-    else
-    {
-        return [super respondsToSelector:aSelector];
-    }
-}
-```
-
-```
-// 具体转发代码
-- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    return [self.appStateDelegate application:application willFinishLaunchingWithOptions:launchOptions];
-}
-```
+![JSDecoupledAppDelegate调用流程](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_02.jpg)
 
 优点：
 - `JSDecoupledAppDelegate`本身对于`AppDelegate`各个功能的拆分对我们理解`AppDelegate`有一定帮助——`AppDelegate`确实承载了太多的功能。
@@ -101,8 +78,7 @@ iOS开发的小伙伴应该对Objective-C的消息转发机制有所了解，`JS
 ```
 ((AppDelegate *)[UIApplication sharedApplication].delegate).window
 ```
-来获取`window`，以及`window`的`rootViewController`。这个问题笔者曾经提issue给作者，作者的回答也是只能通过获取`view.window`等曲线救国的方式获取`window`。
-![作者回复](http://7xij1g.com1.z0.glb.clouddn.com/delegate/delegate_01.png)
+来获取`window`，以及`window`的`rootViewController`。这个问题笔者曾经提[issue](https://github.com/JaviSoto/JSDecoupledAppDelegate/issues/20)给作者，作者的回答也是只能通过获取`view.window`等曲线救国的方式获取`window`。
 
 
 ### AppDelegate分类(Category)
@@ -110,7 +86,7 @@ iOS开发的小伙伴应该对Objective-C的消息转发机制有所了解，`JS
 
 ![新建分类文件](http://7xij1g.com1.z0.glb.clouddn.com/delegate/delegate_02.png)
 
-![在AppDelegate中调用](http://7xij1g.com1.z0.glb.clouddn.com/delegate/delegate_03.png)
+![在AppDelegate中调用](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_05.png)
 
 然而分类的缺点也不言而喻：添加新的属性比较繁琐，只能通过`runtime`或者[BlocksKit](https://github.com/BlocksKit/BlocksKit)等三方库实现。
 
