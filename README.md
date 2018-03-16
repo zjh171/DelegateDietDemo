@@ -23,6 +23,7 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 
 实现原理：
 `FRDModuleManager`的实现很简单，其内部数组持有注册的模块的引用，通过依次调用数组中的每个模块的特定方法来达到解耦的目的：
+
 ![FRDModuleManager原理图](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_01.jpg)
 
 
@@ -38,7 +39,7 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 [JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具，笔者的个人项目[壁纸宝贝](https://itunes.apple.com/cn/app/id1334013423)正在使用这个库。。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有如下代理:
 
 | 代理名 | 协议 |描述|
-|--------|--------|
+|--------|--------|----|
 |  appStateDelegate      |     JSApplicationStateDelegate   |App各种状态|
 |  appDefaultOrientationDelegate      |     JSApplicationDefaultOrientationDelegate   |App的横竖屏切换|
 |  remoteNotificationsDelegate      |     JSApplicationRemoteNotificationsDelegate   |App通知代理|
