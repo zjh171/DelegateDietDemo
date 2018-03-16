@@ -65,7 +65,7 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 - 缺少模块初始化优先级，当有三个模块A,B,C时，正好C依赖于B，B依赖于A，如果在配置文件中配置A，B，C的顺序又是打乱时，初始化会出问题。
 
 ### JSDecoupledAppDelegate
-[JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有如下代理:
+[JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具，笔者的个人项目[壁纸宝贝](https://itunes.apple.com/cn/app/id1334013423)正在使用这个库。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有如下代理:
 ```
 @property (strong, nonatomic) id<JSApplicationStateDelegate> appStateDelegate;
 @property (strong, nonatomic) id<JSApplicationDefaultOrientationDelegate> appDefaultOrientationDelegate;
@@ -128,7 +128,7 @@ iOS开发的小伙伴应该对Objective-C的消息转发机制有所了解，`JS
 ```
 ((AppDelegate *)[UIApplication sharedApplication].delegate).window
 ```
-来获取`window`，以及`window`的`rootViewController`，这个问题笔者曾经提issue给作者，作者的回答也是只能通过获取`view.window`等曲线救国的方式获取`window`。
+来获取`window`，以及`window`的`rootViewController`。这个问题笔者曾经提issue给作者，作者的回答也是只能通过获取`view.window`等曲线救国的方式获取`window`。
 ![作者回复](http://7xij1g.com1.z0.glb.clouddn.com/delegate/delegate_01.png)
 
 
@@ -138,6 +138,7 @@ iOS开发的小伙伴应该对Objective-C的消息转发机制有所了解，`JS
 ![新建分类文件](http://7xij1g.com1.z0.glb.clouddn.com/delegate/delegate_02.png)
 
 ![在AppDelegate中调用](http://7xij1g.com1.z0.glb.clouddn.com/delegate/delegate_03.png)
+
 然而分类的缺点也不言而喻：添加新的属性比较繁琐，只能通过`runtime`或者[BlocksKit](https://github.com/BlocksKit/BlocksKit)等三方库实现。
 
 以上三种方法都是通过对`AppDelegate`修改或添加的方式来达到降低耦合的，下面介绍几种从App架构层就降低`AppDelegate`耦合性的解决方案。
@@ -171,9 +172,38 @@ NSString *customURL = @"JLRoutesDemo://Service/ServiceMediator";
 [MGJRouter](https://github.com/meili/MGJRouter)是一个高效/灵活的iOS URL Router,解决了`JLRoutes`查找`URL`不够高效，通过遍历而不是匹配的问题。这里不多做介绍了,大家可以自行Google。
 
 
+### Objection
+[Objection](https://github.com/atomicobject/objection)是一个轻量级的依赖注入框架。依赖注入对于客户端开发的我们可能不太熟悉，但服务端中使用很多，比如Java的`Spring`框架和PHP的`laravel`框架。
+依赖注入的核心思想就是控制权反转(Inversion of Control,IoC)。传统iOS程序设计，我们直接在对象内部通过new进行创建对象，是程序主动去创建依赖对象；而IoC是有专门一个容器来创建这些对象，即由Ioc容器来控制对象的创建。具体到Objective-C中就是，先定义一个协议(protocol)，然后通过objection来注册这个协议对应的class，需要的时候，可以获取该协议对应的object。对于使用方无需关心到底使用的是哪个Class，反正该有的方法、属性都有了(在协议中指定)：
+```
+// 先在App启动之前初始化容器
++(void)load
+{
+    JSObjectionInjector *injector = [JSObjection defaultInjector];
+    injector = injector ? : [JSObjection createInjector];
+    injector = [injector withModule:[[xxxModule alloc] init]];
+    [JSObjection setDefaultInjector:injector];
+}
+```
+`xxxModule`就是我们需要绑定绑定`protocol`和具体实现类的地方,假设我们有两个服务需要启动，可以如下处理：
+
+```
+//xxxModule.m文件
+[self bindClass:[NotificationService class] toProtocol:@protocol(NotificationServiceProtocol)];
+[self bindClass:[ShareService class] toProtocol:@protocol(ShareServiceProtocol)];
+```
+接着我们只要通过如下代码获取这两个对象：
+```
+// 通知服务
+JSObjectionInjector *injector = [JSObjection defaultInjector];
+NSObject<NotificationServiceProtocol> *notificationService = [injector getObject:@protocol(NotificationServiceProtocol)];
+// 分享服务
+NSObject<ShareServiceProtocol> *shareService = [injector getObject:@protocol(ShareServiceProtocol)];
+```
+这样一来`notificationService`和`shareService`就被创建了，我们可以在这两个对象中编写我们的逻辑，省去了在AppDelegate中编写相应的代码，从而降低了耦合性。如果大家对这个库还有疑问，可以参考笔者的Demo。
 
 ### 总结
-本文主要讲解了通过两种方式来瘦身`AppDelegate`，虽然有所区别，但大致思路还是差不多的。希望对大家有所帮助。本文Demo的地址:[https://github.com/kysonzhu/DelegateDietDemo](https://github.com/kysonzhu/DelegateDietDemo)
+本文主要讲解了通过两种方式来瘦身`AppDelegate`，虽然有所区别，但大致思路还是差不多的。希望对大家有所帮助。本文Demo的地址:[https://github.com/zjh171/DelegateDietDemo](https://github.com/zjh171/DelegateDietDemo)
 
 ### 参考
 
