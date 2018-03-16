@@ -36,7 +36,7 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 - 缺少模块初始化优先级，当有三个模块A,B,C时，正好C依赖于B，B依赖于A，如果在配置文件中配置A，B，C的顺序又是打乱时，初始化会出问题。
 
 ### JSDecoupledAppDelegate
-[JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具，笔者的个人项目[壁纸宝贝](https://itunes.apple.com/cn/app/id1334013423)正在使用这个库。。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有如下代理:
+[JSDecoupledAppDelegate](https://github.com/JaviSoto/JSDecoupledAppDelegate)是由`JSBadgeView`的作者开发的一款轻量级的`AppDelegate`解耦工具。它将`AppDelegate`各个功能点独立出来，并通过代理的方式将控制权下发。我们可以看到`JSDecoupledAppDelegate`类中有很多代理，这边列举几个:
 
 | 代理名 | 协议 |描述|
 |--------|--------|----|
