@@ -1,3 +1,6 @@
+
+>本文原地址：http://kyson.cn/index.php/archives/105/
+
 `AppDelegate`瘦身是一个大家都很熟悉的话题，各家也有各自的解决方案。但方案无外乎两种，一种是从`AppDelegate`本身入手，通过各种方式减少AppDelegate的代码行数，另一种是通过架构层面就解决了。本文将分别介绍这两种方式的代表性库，并对比其优缺点。
 
 ### FRDModuleManager
