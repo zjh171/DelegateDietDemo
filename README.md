@@ -26,7 +26,7 @@ FRDModuleManager *manager = [FRDModuleManager sharedInstance];
 实现原理：
 `FRDModuleManager`的实现很简单，其内部数组持有注册的模块的引用，通过依次调用数组中的每个模块的特定方法来达到解耦的目的：
 
-![FRDModuleManager原理图](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_04.jpg)
+![FRDModuleManager原理图](http://images.kyson.cn/delegate/appdelegate_04.jpg)
 
 
 优点：
@@ -70,7 +70,7 @@ return UIApplicationMain(argc, argv, nil, NSStringFromClass([JSDecoupledAppDeleg
 实现原理：
 iOS开发的小伙伴应该对Objective-C的消息转发机制有所了解，`JSDecoupledAppDelegate`就是通过转发`AppDelegate`的各个方法来实现`AppDelegate`的解耦的：
 
-![JSDecoupledAppDelegate调用流程](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_02.jpg)
+![JSDecoupledAppDelegate调用流程](http://images.kyson.cn/delegate/appdelegate_02.jpg)
 
 优点：
 - `JSDecoupledAppDelegate`本身对于`AppDelegate`各个功能的拆分对我们理解`AppDelegate`有一定帮助——`AppDelegate`确实承载了太多的功能。
@@ -87,9 +87,9 @@ iOS开发的小伙伴应该对Objective-C的消息转发机制有所了解，`JS
 ### AppDelegate分类(Category)
 创建`AppDelegate`分类无疑是低投入高产出的最好解决方案了。目前笔者公司的项目正在使用该方式。不需要添加任何三方库，我们就可以给`AppDelegate`添加很多方法，并且能轻松控制方法的执行顺序，通过此方式，我们项目的`AppDelegate`的`.m`文件文件大小成功瘦身至200行+：
 
-![新建分类文件](http://7xij1g.com1.z0.glb.clouddn.com/delegate/delegate_02.png)
+![新建分类文件](http://images.kyson.cn/delegate/delegate_02.png)
 
-![在AppDelegate中调用](http://7xij1g.com1.z0.glb.clouddn.com/delegate/appdelegate_05.png)
+![在AppDelegate中调用](http://images.kyson.cn/delegate/appdelegate_05.png)
 
 然而分类的缺点也不言而喻：添加新的属性比较繁琐，只能通过`runtime`或者[BlocksKit](https://github.com/BlocksKit/BlocksKit)等三方库实现。
 
